@@ -68,18 +68,43 @@ const changeModeOnClick = (newMode) => {
   height: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
     url("../assets/tuitionimage.jpg");
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
+  background-position: center center;
 }
 
 #left-section {
-  width: 20%;
+  width: 50%;
   height: 100%;
   background: rgba(0, 0, 0, 0.2);
   color: white;
 
   padding: 5rem;
   box-sizing: border-box;
+}
+
+@media screen and (min-width: 1440px) {
+  #left-section {
+    width: 30%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+
+    padding: 5rem;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  #left-section {
+    width: 20%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+
+    padding: 5rem;
+    box-sizing: border-box;
+  }
 }
 
 #tent-title {
