@@ -1,10 +1,6 @@
 <script setup>
-import { storeToRefs } from "pinia";
-import { ref, watchEffect } from "vue";
-import useAuthStore from "../stores/authStore";
-import { logOut, signIn, signUp } from "../lib/handlers/auth";
-
-const { user } = storeToRefs(useAuthStore());
+import { ref } from "vue";
+import { signIn, signUp } from "../lib/handlers/auth";
 
 const mode = ref("sign-in");
 
@@ -22,43 +18,42 @@ const inputs = ref({
 const changeModeOnClick = (newMode) => {
   mode.value = newMode;
 };
-
-watchEffect(() => {
-  console.log("current user", user.value);
-});
 </script>
 
 <template>
-  <div id="form-box">
-    <div id="mode-buttons">
-      <button @click="changeModeOnClick('sign-in')">Sign In</button>
-      <button @click="changeModeOnClick('sign-up')">Sign Up</button>
-      <button @click="logOut">Log Out</button>
-    </div>
+  <div id="background-image">
+    <div id="left-section">
+      <h1 id="tent-title">Tent</h1>
 
-    <div id="form-inputs" v-if="mode === 'sign-in'">
-      <h1>Sign In</h1>
-      <form @submit="signIn(inputs.email, inputs.password)">
+      <div id="mode-buttons">
+        <button @click="changeModeOnClick('sign-in')">Sign In</button>
+        <button @click="changeModeOnClick('sign-up')">Sign Up</button>
+      </div>
+
+      <form @submit="signIn(inputs.email, inputs.password)" v-show="mode === 'sign-in'">
         <label>Email</label>
         <input type="text" v-model="inputs.email" />
+
         <label>Password</label>
         <input type="text" v-model="inputs.password" />
+
         <button type="submit">Sign In</button>
       </form>
-    </div>
 
-    <div id="form-inputs" v-else-if="mode === 'sign-up'">
-      <h1>Sign Up</h1>
       <form
         @submit="signUp(inputs.email, inputs.password, inputs.phoneNumber, inputs.telegramHandle)"
+        v-show="mode === 'sign-up'"
       >
         <label>Email</label>
         <input type="text" v-model="inputs.email" />
+
         <label>Password</label>
         <input type="text" v-model="inputs.password" />
-        <label>Phone No.</label>
+
+        <label>Phone Number</label>
         <input type="text" v-model="inputs.phoneNumber" />
-        <label>Telegram</label>
+
+        <label>Telegram Handle</label>
         <input type="text" v-model="inputs.telegramHandle" />
 
         <button type="submit">Sign Up</button>
@@ -68,61 +63,79 @@ watchEffect(() => {
 </template>
 
 <style scoped>
-#form-box {
-  position: relative;
-  top: 30%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 30%;
-  gap: 1rem;
-  padding: 2rem;
-  padding-top: 4rem;
-  border: 3px solid gray;
-  border-radius: 1rem;
+#background-image {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+    url("../assets/tuitionimage.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+#left-section {
+  width: 20%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+
+  padding: 5rem;
+  box-sizing: border-box;
+}
+
+#tent-title {
+  font-size: 5rem;
+  margin-bottom: 0.5rem;
 }
 
 #mode-buttons {
-  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 1rem;
+  margin-bottom: 5rem;
 }
 
-#form-inputs {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+#mode-buttons button {
+  background-color: inherit;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
-#form-inputs h1 {
-  text-align: center;
+#mode-buttons button:hover {
+  color: gray;
+  transition: color 150ms;
 }
 
 form {
-  display: grid;
-  grid-template-columns: 30% auto;
-  gap: 0.25rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+form input {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
 }
 
 form button {
-  grid-column: span 2;
-  border: none;
-  background-color: gray;
-  padding: 0.5rem;
-  font-size: 1.2rem;
+  background: rgb(255, 144, 66);
   color: white;
-  border-radius: 0.5rem;
-  margin-top: 2rem;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  margin-bottom: 3rem;
+  border-radius: 1rem;
   cursor: pointer;
 }
 
 form button:hover {
-  background-color: green;
-  transition: background-color 300ms;
-  transition-timing-function: ease-in-out;
+  background: rgba(255, 144, 66, 0.8);
+  transition: background 150ms;
 }
 </style>
