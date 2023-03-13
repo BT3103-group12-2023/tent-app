@@ -47,7 +47,7 @@ const signUpOnSubmit = async () => {
         <button @click="changeModeOnClick('sign-up')">Sign Up</button>
       </div>
 
-      <form @submit="signInOnSubmit" v-show="mode === 'sign-in'">
+      <form @submit.prevent="signInOnSubmit" v-show="mode === 'sign-in'">
         <label>Email</label>
         <input type="text" v-model="inputs.email" />
 
@@ -57,7 +57,7 @@ const signUpOnSubmit = async () => {
         <button type="submit">Sign In</button>
       </form>
 
-      <form @submit="signUpOnSubmit" v-show="mode === 'sign-up'">
+      <form @submit.prevent="signUpOnSubmit" v-show="mode === 'sign-up'">
         <label>Email</label>
         <input type="text" v-model="inputs.email" />
 
