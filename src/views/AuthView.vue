@@ -1,8 +1,10 @@
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { signIn, signUp } from "../lib/handlers/auth";
 
 const mode = ref("sign-in");
+const router = useRouter();
 
 const inputs = ref({
   email: "",
@@ -18,6 +20,21 @@ const inputs = ref({
 const changeModeOnClick = (newMode) => {
   mode.value = newMode;
 };
+
+const signInOnSubmit = async () => {
+  await signIn(inputs.value.email, inputs.value.password);
+  router.push("/me");
+};
+
+const signUpOnSubmit = async () => {
+  await signUp(
+    inputs.value.email,
+    inputs.value.password,
+    inputs.value.phoneNumber,
+    inputs.value.telegramHandle
+  );
+  router.push("/me");
+};
 </script>
 
 <template>
@@ -30,7 +47,7 @@ const changeModeOnClick = (newMode) => {
         <button @click="changeModeOnClick('sign-up')">Sign Up</button>
       </div>
 
-      <form @submit="signIn(inputs.email, inputs.password)" v-show="mode === 'sign-in'">
+      <form @submit="signInOnSubmit" v-show="mode === 'sign-in'">
         <label>Email</label>
         <input type="text" v-model="inputs.email" />
 
@@ -40,10 +57,7 @@ const changeModeOnClick = (newMode) => {
         <button type="submit">Sign In</button>
       </form>
 
-      <form
-        @submit="signUp(inputs.email, inputs.password, inputs.phoneNumber, inputs.telegramHandle)"
-        v-show="mode === 'sign-up'"
-      >
+      <form @submit="signUpOnSubmit" v-show="mode === 'sign-up'">
         <label>Email</label>
         <input type="text" v-model="inputs.email" />
 
