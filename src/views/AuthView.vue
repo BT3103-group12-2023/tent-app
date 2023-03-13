@@ -94,6 +94,7 @@ const signUpOnSubmit = async () => {
   color: white;
 
   padding: 5rem;
+  padding-top: 2rem;
   box-sizing: border-box;
 }
 
@@ -105,6 +106,7 @@ const signUpOnSubmit = async () => {
     color: white;
 
     padding: 5rem;
+    padding-top: 2rem;
     box-sizing: border-box;
   }
 }
@@ -117,26 +119,26 @@ const signUpOnSubmit = async () => {
     color: white;
 
     padding: 5rem;
+    padding-top: 2rem;
     box-sizing: border-box;
   }
 }
 
 #tent-title {
   font-size: 5rem;
-  margin-bottom: 0.5rem;
 }
 
 #mode-buttons {
   display: flex;
   gap: 1rem;
-  margin-bottom: 5rem;
+  margin-bottom: 1.5rem;
 }
 
 #mode-buttons button {
   background-color: inherit;
   border: none;
   color: white;
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
 }
 
@@ -151,14 +153,12 @@ form {
 }
 
 form label {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 form input {
-  font-size: 1.5rem;
-  padding: 0.5rem;
-  margin-bottom: 2rem;
+  padding: 0.3rem 0.5rem;
+  margin-bottom: 0.5rem;
   border-radius: 1rem;
 }
 
@@ -168,13 +168,13 @@ form button {
   border: none;
   font-size: 1.5rem;
   padding: 0.5rem;
-  margin-bottom: 3rem;
+  margin-top: 1rem;
   border-radius: 1rem;
   cursor: pointer;
 }
 
 form button:hover {
-  background: rgba(255, 144, 66, 0.8);
+  background: rgb(220, 120, 66);
   transition: background 150ms;
 }
 </style>
