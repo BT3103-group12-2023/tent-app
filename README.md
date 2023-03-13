@@ -4,13 +4,15 @@
 
 ### Frontend
 
-#### Views
+#### Sitemap
 
-- `/` = home view
-  - `auth/` = authentication view (sign in, sign up)
-  - `student-listings/` = student listings view
-  - `tutor-listings/` = tutor listings view
-  - `tutor/[id]/` = public profile for that tutor
+- `/`
+  - `/home` = landing page
+  - `/auth` = authentication page (sign in, sign up)
+  - `/student-listings` = student listings page
+  - `/tutor-listings` = tutor listings page
+  - `/tutor/[id]` = public profile page
+  - `/me` = personal profile page
 
 ### Backend
 
